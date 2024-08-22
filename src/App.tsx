@@ -14,8 +14,9 @@ function App() {
   async function parseVal() {
     const values: Response = await fetch('https://script.google.com/macros/s/AKfycbxfvJcKzVFr_DViMr-fgs2UY-JRQTrs2LHlvcu4GHvmlaebkTJoccUN2AGE3h7uDGNB/exec')
     const parsedText: string = await values.text()
+    const carbon: number = Math.floor(Number(parsedText.split(",")[1]))
     setWaste(parsedText.split(",")[0])
-    setCarbonFootprint(parsedText.split(",")[1])
+    setCarbonFootprint(String(carbon))
     setMoney(parsedText.split(",")[2])
   }
 
@@ -41,11 +42,6 @@ function App() {
             </div>
           </div>
           <h1 className='text-l text-center'>ข้อมูลมีการ Update ทุก 5 วินาที</h1>
-          <div className="flex-row rounded-xl backdrop-blur-sm space-y-8  bg-black bg-opacity-40 min-w-max p-8">
-            <h1 className='text-6xl'>ขาดเงินทอนเท่าไหร่?</h1>
-            <h1 className='text-3xl'>เช็คจำนวนเงินที่คุณขาด เพียงแค่ใส่เบอร์คุณตรงนี้</h1>
-            <input type="string" className="outline-1 bg-opacity-60 bg-black rounded-sm outline outline-zinc-700 px-2 text-lg" />
-          </div>
         </div>
     </>
   )
